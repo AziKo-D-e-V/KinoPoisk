@@ -1,9 +1,9 @@
 const CustomError = require("../libs/customError");
 
-const errorHandler = (error, _, res) => {
-  if (error instanceof CustomError) {
-    return res.status(error.status).json({ error: error.message });
-} else {
+const errorHandler = (err, req, res, next) => {
+  if (err instanceof CustomError) {
+    return res.status(err.status).json({ error: err.message });
+  } else {
     res.status(500).json({ error: "Internal server error" });
   }
 };

@@ -43,7 +43,7 @@ const register = async (req, res, next) => {
   }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
@@ -68,7 +68,7 @@ const login = async (req, res) => {
 
     res.status(201).json({ message: "Login successful", token });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
